@@ -1,22 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package DineEaseController;
 
+import DIneEaseModel.HomepageModel;
 import DIneEaseModel.OpeningPageModel;
-import DineEaseVIew.OpeningPageView;
-import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import javax.swing.SwingUtilities;
 
-/**
- *
- * @author roshankhadka
- */
+import DineEaseVIew.OpeningPageView;
+import DineEaseView.HomepageView;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
 public class OpeningPageController {
     private OpeningPageModel model;
     private OpeningPageView view;
@@ -32,18 +25,23 @@ public class OpeningPageController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == view.getBtnGetStarted()) {
-                
-                    new Homepage(); 
+                    // Dispose the OpeningPage frame
+                    view.getFrame().dispose();
+                    // Initialize the Homepage MVC components
+                    HomepageModel homeModel = new HomepageModel();
+                    HomepageView homeView = new HomepageView();
+                    new HomepageController(homeModel, homeView);
                 }
             }
         });
 
-        
         view.getBtnGetStarted().addMouseListener(new MouseAdapter() {
+            @Override
             public void mouseEntered(MouseEvent e) {
                 view.getBtnGetStarted().setBackground(Color.YELLOW);
             }
 
+            @Override
             public void mouseExited(MouseEvent e) {
                 view.getBtnGetStarted().setBackground(Color.GREEN);
             }
@@ -58,4 +56,3 @@ public class OpeningPageController {
         });
     }
 }
-
