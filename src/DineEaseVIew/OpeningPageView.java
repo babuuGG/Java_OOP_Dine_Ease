@@ -42,7 +42,7 @@ public class OpeningPageView {
         btnGetStarted.setForeground(Color.BLACK);
 
         // Load and set background image
-        ImageIcon backgroundImg = new ImageIcon("/Users/roshankhadka/Desktop/sem 2/LED2/DineEaseNA/src/dineeasena/ooo.png");
+        ImageIcon backgroundImg = new ImageIcon("Resources/ooo.png");
         backgroundLabel = new JLabel(backgroundImg);
         backgroundLabel.setBounds(0, 0, 800, 470);
 

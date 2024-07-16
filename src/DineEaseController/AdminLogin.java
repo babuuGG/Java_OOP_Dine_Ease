@@ -6,11 +6,11 @@ package DineEaseController;
 
 /**
  *
- * @author roshankhadka
+ * @author Nitro
  */
-public class Homepage {
+public class AdminLogin {
 
-    public Homepage() {
+    public AdminLogin() {
     }
     
 }

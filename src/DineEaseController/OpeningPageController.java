@@ -2,9 +2,10 @@ package DineEaseController;
 
 import DIneEaseModel.HomepageModel;
 import DIneEaseModel.OpeningPageModel;
+import DineEaseVIew.HomepageView;
 
 import DineEaseVIew.OpeningPageView;
-import DineEaseView.HomepageView;
+
 
 import javax.swing.*;
 import java.awt.*;
