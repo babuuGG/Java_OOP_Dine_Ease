@@ -4,11 +4,12 @@
  */
 package DineEaseController;
 
+import DineEaseVIew.StaffPageView;
 import DIneEaseModel.HomepageModel;
-import DIneEaseModel.OpeningPageModel;
+
 import DIneEaseModel.StaffLoginModel;
 import DineEaseVIew.HomepageView;
-import DineEaseVIew.OpeningPageView;
+
 import DineEaseVIew.StaffLoginView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -92,6 +93,8 @@ public class StaffLoginController {
 
         if (model.validateLogin(username, password)) {
             JOptionPane.showMessageDialog(null, "Login Successful!");
+            view.frame.dispose();
+            new StaffPageController(new StaffPageView());
         } else {
             JOptionPane.showMessageDialog(null, "Invalid Username or Password!");
         }
