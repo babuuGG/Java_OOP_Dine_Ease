@@ -1,8 +1,10 @@
 package DineEaseController;
 
+import DIneEaseModel.AdminLoginModel;
 import DIneEaseModel.HomepageModel;
 import DIneEaseModel.OpeningPageModel;
 import DIneEaseModel.StaffLoginModel;
+import DineEaseVIew.AdminLoginView;
 import DineEaseVIew.HomepageView;
 import DineEaseVIew.OpeningPageView;
 import DineEaseVIew.StaffLoginView;
@@ -37,7 +39,9 @@ public class HomepageController {
     private void handleButtonClick(String buttonText) {
         switch (buttonText) {
             case "Admin":
-                new AdminLogin();
+            AdminLoginModel adminModel = new AdminLoginModel();
+            AdminLoginView adminLoginView = new AdminLoginView();
+            new AdminLoginController(adminModel, adminLoginView);
                 break;
             case "Staff":
             StaffLoginModel staffModel = new StaffLoginModel();
