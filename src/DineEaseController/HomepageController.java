@@ -53,7 +53,7 @@ public class HomepageController {
             case "Customer":
             CustomerPageModel customerModel = new CustomerPageModel();
             CustomerPageView customerView = new CustomerPageView();
-            new CustomerPageController(customerModel, customerView);    
+            new CustomerPageController(customerView);    
                 
                 break;
             case "Exit":

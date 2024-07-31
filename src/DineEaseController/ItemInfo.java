@@ -6,11 +6,8 @@ package DineEaseController;
 
 /**
  *
- * @author Nitro
+ * @author roshankhadka
  */
-public class StaffLogin {
-
-    public StaffLogin() {
-    }
+class ItemInfo {
     
 }

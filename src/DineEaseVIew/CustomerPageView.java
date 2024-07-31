@@ -34,7 +34,7 @@ public class CustomerPageView {
         headerLabel = new JLabel("CUSTOMER PAGE", JLabel.CENTER);
         headerLabel.setFont(new Font(null, Font.BOLD, 30));
         headerLabel.setForeground(Color.black);
-        headerLabel.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 0)); 
+    
         mainFrame.add(headerLabel, BorderLayout.NORTH);
         
         buttonPanel = new JPanel();
@@ -105,7 +105,7 @@ public class CustomerPageView {
         }
     }
 
-    private static class RoundedBorder extends AbstractBorder {
+    public static class RoundedBorder extends AbstractBorder {
         private final Color borderColor;
         private final int borderRadius;
 
