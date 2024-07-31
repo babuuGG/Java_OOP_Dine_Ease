@@ -4,14 +4,10 @@
  */
 package DIneEaseModel;
 
-
-
-
-public class AdminLoginModel {
-   
-    public boolean authenticate(String username, String password) {
-        
-        return "admin".equals(username) && "password".equals(password);
-    }
+/**
+ *
+ * @author roshankhadka
+ */
+public class CustomerPageModel {
+    
 }
-
