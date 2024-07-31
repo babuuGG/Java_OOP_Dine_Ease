@@ -1,10 +1,12 @@
 package DineEaseController;
 
 import DIneEaseModel.AdminLoginModel;
+import DIneEaseModel.CustomerPageModel;
 import DIneEaseModel.HomepageModel;
 import DIneEaseModel.OpeningPageModel;
 import DIneEaseModel.StaffLoginModel;
 import DineEaseVIew.AdminLoginView;
+import DineEaseVIew.CustomerPageView;
 import DineEaseVIew.HomepageView;
 import DineEaseVIew.OpeningPageView;
 import DineEaseVIew.StaffLoginView;
@@ -49,7 +51,10 @@ public class HomepageController {
             new StaffLoginController(staffModel, staffLoginView);
                 break;
             case "Customer":
-                new CustomerPage();
+            CustomerPageModel customerModel = new CustomerPageModel();
+            CustomerPageView customerView = new CustomerPageView();
+            new CustomerPageController(customerModel, customerView);    
+                
                 break;
             case "Exit":
                 System.exit(0);
