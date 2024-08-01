@@ -8,6 +8,8 @@ package DineEaseController;
 
 import DIneEaseModel.AdminLoginModel;
 import DineEaseVIew.AdminLoginView;
+import DineEaseVIew.AdminPageView;
+import DineEaseVIew.StaffPageView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -35,7 +37,7 @@ public class AdminLoginController {
             if (model.authenticate(username, password)) {
                 view.showMessage("Login Successful!");
                 
-                AdminPage adminPage = new AdminPage();
+                new AdminPageController(new AdminPageView());
             } else {
                 view.showMessage("Invalid Username or Password!");
             }

@@ -4,11 +4,7 @@
  */
 package DIneEaseModel;
 
-/**
- *
- * @author roshankhadka
- */
-public class StaffLoginModel {
-   
-}
+
+public class AdminPageModel{
     
+}

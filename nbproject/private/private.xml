@@ -3,14 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/roshankhadka/Desktop/Java_OOP_Dine_Ease/src/DineEaseVIew/CustomerPageView.java</file>
-            <file>file:/Users/roshankhadka/Desktop/Java_OOP_Dine_Ease/src/DineEaseController/CustomerPage.java</file>
-            <file>file:/Users/roshankhadka/Desktop/Java_OOP_Dine_Ease/src/DineEaseController/ItemInfo.java</file>
-            <file>file:/Users/roshankhadka/Desktop/Java_OOP_Dine_Ease/src/DineEaseController/HomepageController.java</file>
-            <file>file:/Users/roshankhadka/Desktop/Java_OOP_Dine_Ease/src/DineEaseController/CustomerPageController.java</file>
-            <file>file:/Users/roshankhadka/Desktop/Java_OOP_Dine_Ease/src/DineEaseController/AdminLoginController.java</file>
-            <file>file:/Users/roshankhadka/Desktop/Java_OOP_Dine_Ease/src/DineEaseController/StaffLoginController.java</file>
-            <file>file:/Users/roshankhadka/Desktop/Java_OOP_Dine_Ease/src/DineEaseController/StaffPageController.java</file>
+            <file>file:/C:/Users/Nitro/Desktop/Java_OOP_Dine_Ease/src/DineEaseController/StaffPageController.java</file>
+            <file>file:/C:/Users/Nitro/Desktop/Java_OOP_Dine_Ease/src/DineEaseController/AdminLoginController.java</file>
+            <file>file:/C:/Users/Nitro/Desktop/Java_OOP_Dine_Ease/src/DineEaseController/OrderPlacement.java</file>
+            <file>file:/C:/Users/Nitro/Desktop/Java_OOP_Dine_Ease/src/DineEaseController/AdminPage.java</file>
         </group>
     </open-files>
 </project-private>
