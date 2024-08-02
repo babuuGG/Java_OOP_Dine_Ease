@@ -3,16 +3,24 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< Updated upstream
 <<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
             <file>file:/C:/Users/anils/OneDrive/Desktop/Java_OOP_Dine_Ease/src/DineEaseController/OpeningPageController.java</file>
             <file>file:/C:/Users/anils/OneDrive/Desktop/Java_OOP_Dine_Ease/src/DIneEaseModel/HomepageModel.java</file>
             <file>file:/C:/Users/anils/OneDrive/Desktop/Java_OOP_Dine_Ease/src/DineEaseVIew/StaffLoginView.java</file>
             <file>file:/C:/Users/anils/OneDrive/Desktop/Java_OOP_Dine_Ease/src/DIneEaseModel/StaffLoginModel.java</file>
+<<<<<<< Updated upstream
+=======
+            <file>file:/C:/Users/anils/OneDrive/Desktop/Java_OOP_Dine_Ease/src/DineEaseController/CustomerPage.java</file>
+>>>>>>> Stashed changes
             <file>file:/C:/Users/anils/OneDrive/Desktop/Java_OOP_Dine_Ease/src/DineEaseVIew/OpeningPageView.java</file>
             <file>file:/C:/Users/anils/OneDrive/Desktop/Java_OOP_Dine_Ease/src/DineEaseController/HomepageController.java</file>
             <file>file:/C:/Users/anils/OneDrive/Desktop/Java_OOP_Dine_Ease/src/DIneEaseModel/OpeningPageModel.java</file>
             <file>file:/C:/Users/anils/OneDrive/Desktop/Java_OOP_Dine_Ease/Resources/Homepage.png</file>
             <file>file:/C:/Users/anils/OneDrive/Desktop/Java_OOP_Dine_Ease/src/dineease_oop/DineEase_OOP.java</file>
+<<<<<<< Updated upstream
 =======
             <file>file:/Users/roshankhadka/Desktop/Java_OOP_Dine_Ease/src/DineEaseController/OpeningPageController.java</file>
             <file>file:/Users/roshankhadka/Desktop/Java_OOP_Dine_Ease/src/DineEaseVIew/AdminLoginView.java</file>
@@ -30,6 +38,8 @@
             <file>file:/Users/roshankhadka/Desktop/Java_OOP_Dine_Ease/src/DineEaseVIew/ItemModifyView.java</file>
             <file>file:/Users/roshankhadka/Desktop/Java_OOP_Dine_Ease/src/DineEaseController/StaffLoginController.java</file>
 >>>>>>> 33ddb052d4a717726f521d7450e060aa5b84f0dc
+=======
+>>>>>>> Stashed changes
         </group>
     </open-files>
 </project-private>
