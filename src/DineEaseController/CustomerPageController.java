@@ -6,8 +6,10 @@ package DineEaseController;
 
 import DIneEaseModel.CustomerPageModel;
 import DIneEaseModel.HomepageModel;
+import DineEaseDatabase.ItemInfoDAO;
 import DineEaseVIew.CustomerPageView;
 import DineEaseVIew.HomepageView;
+import DineEaseVIew.ItemInfoView;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -27,8 +29,9 @@ public class CustomerPageController {
 
         createButton("Menu Info", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                showMessage("Menu Info button clicked!");
-                ItemInfo itemInfo = new ItemInfo();
+                ItemInfoView itemView = new ItemInfoView();
+            ItemInfoDAO itemDAO = new ItemInfoDAO();
+            new ItemInfoController(itemView, itemDAO);
             }
         });
 

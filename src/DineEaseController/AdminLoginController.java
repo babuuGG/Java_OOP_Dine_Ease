@@ -55,8 +55,7 @@ public class AdminLoginController {
         @Override
         public void actionPerformed(ActionEvent e) {
             view.dispose();
-            // Assuming HomePage class is implemented
-            // HomePage homePage = new HomePage();
+            
         }
     }
 

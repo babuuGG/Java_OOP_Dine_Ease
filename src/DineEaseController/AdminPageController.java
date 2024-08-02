@@ -4,12 +4,15 @@
  */
 package DineEaseController;
 
+import DIneEaseModel.AdminLoginModel;
 import DIneEaseModel.AdminPageModel;
+
 import DineEaseDatabase.ItemInfoDAO;
-import DineEaseDatabase.ItemModifyDAO;
+import DineEaseVIew.AdminLoginView;
+
 import DineEaseVIew.AdminPageView;
+
 import DineEaseVIew.ItemInfoView;
-import DineEaseVIew.ItemModifyView;
 
 
 
@@ -34,9 +37,7 @@ public class AdminPageController {
         switch (command) {
             case "Items Modify":
                 view.getMainFrame().dispose();
-                ItemModifyView modifyView = new ItemModifyView();
-                ItemModifyDAO modifyDAO = new ItemModifyDAO();
-                new ItemModifyController(modifyView, modifyDAO);
+                
                 break;
             case "Staffs Info":
                 view.showMessage("Staff Info button clicked!");
@@ -51,7 +52,9 @@ public class AdminPageController {
                 view.showMessage("Sales Report button clicked!");
                 break;
             case "Go Back":
-                view.showMessage("Go Back button clicked!");
+               view.getMainFrame().dispose();
+               new AdminLoginController(new AdminLoginModel(), new AdminLoginView());
+
                 break;
         }
     }
@@ -64,7 +67,9 @@ public class AdminPageController {
                     view.showMessage("About Button clicked!");
                     break;
                 case "Back":
-                    view.showMessage("Go Back menu item clicked!");
+                    view.getMainFrame().dispose();
+                    new AdminLoginController(new AdminLoginModel(), new AdminLoginView());
+                    
                     break;
                 case "Exit":
                     int option = javax.swing.JOptionPane.showConfirmDialog(view.getMainFrame(), "Are you sure you want to exit?",

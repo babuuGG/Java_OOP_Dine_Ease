@@ -3,7 +3,15 @@ package DineEaseController;
 
 
 import DIneEaseModel.HomepageModel;
+import DIneEaseModel.StaffLoginModel;
+import DineEaseDatabase.ItemInfoDAO;
+
+
+
 import DineEaseVIew.HomepageView;
+import DineEaseVIew.ItemInfoView;
+import DineEaseVIew.StaffLoginView;
+
 import DineEaseVIew.StaffPageView;
 import java.awt.Color;
 import java.awt.Component;
@@ -41,7 +49,7 @@ public class StaffPageController {
 
     private void goBack() {
         view.getMainFrame().dispose();
-        new HomepageController(new HomepageModel(), new HomepageView());
+        new StaffLoginController(new StaffLoginModel(), new StaffLoginView());
     }
 
     private void exitApplication() {
@@ -53,21 +61,23 @@ public class StaffPageController {
     }
 
     private void showButtonDemo() {
-        createButton("Menu Info", e -> {
-            ItemInfo itemInfo = new ItemInfo();
+        createButton("Menu Info", new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            ItemInfoView itemView = new ItemInfoView();
+            ItemInfoDAO itemDAO = new ItemInfoDAO();
+            new ItemInfoController(itemView, itemDAO);
+            }
         });
 
         createButton("Order Placement", e -> {
-            OrderPlacement orderPlacement = new OrderPlacement();
-        });
-
-        createButton("Exit", e -> {
-            System.exit(0);
+            view.getMainFrame().dispose();
+            
         });
 
         createButton("Go Back", e -> {
             view.getMainFrame().dispose();
-            new HomepageController(new HomepageModel(), new HomepageView());
+            new StaffLoginController(new StaffLoginModel(), new StaffLoginView());
+
         });
         view.getMainFrame().setLocationRelativeTo(null);
     }
