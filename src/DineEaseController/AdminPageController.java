@@ -13,6 +13,7 @@ import DineEaseVIew.AdminLoginView;
 import DineEaseVIew.AdminPageView;
 
 import DineEaseVIew.ItemInfoView;
+import DineEaseVIew.ItemModifyView;
 
 
 
@@ -37,6 +38,8 @@ public class AdminPageController {
         switch (command) {
             case "Items Modify":
                 view.getMainFrame().dispose();
+                 new ItemModifyController(new ItemModifyView());
+                
                 
                 break;
             case "Staffs Info":
