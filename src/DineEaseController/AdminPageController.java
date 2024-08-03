@@ -10,7 +10,7 @@ import DineEaseVIew.AdminLoginView;
 import DineEaseVIew.AdminPageView;
 import DineEaseVIew.ItemInfoView;
 import DineEaseVIew.ItemModifyView;
-
+import DineEaseVIew.StaffInfoView;
 
 
 
@@ -18,7 +18,7 @@ public class AdminPageController {
     private AdminPageView view;
     private AdminPageModel model;
 
-    public AdminPageController(AdminPageView view) {
+    public AdminPageController(AdminPageModel adminPageModel, AdminPageView view) {
         this.view = view;
         this.model = new AdminPageModel(); // Initialize the model
 
@@ -38,7 +38,8 @@ public class AdminPageController {
                 new ItemModifyController(modifyView, modifyDAO);
                 break;
             case "Staffs Info":
-                view.showMessage("Staff Info button clicked!");
+                view.getMainFrame().dispose();
+                new StaffInfoController(new StaffInfoView());
                 break;
             case "Items Info":
                 view.getMainFrame().dispose();
