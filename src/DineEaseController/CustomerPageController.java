@@ -29,7 +29,7 @@ public class CustomerPageController {
 
         createButton("Menu Info", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ItemInfoView itemView = new ItemInfoView();
+            ItemInfoView itemView = new ItemInfoView();
             ItemInfoDAO itemDAO = new ItemInfoDAO();
             new ItemInfoController(itemView, itemDAO);
             }

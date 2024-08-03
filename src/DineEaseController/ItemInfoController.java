@@ -3,8 +3,10 @@ package DineEaseController;
 import DIneEaseModel.HomepageModel;
 import DineEaseDatabase.ItemInfoDAO;
 import DIneEaseModel.Item;
+import DineEaseDatabase.ItemModifyDAO;
 import DineEaseVIew.HomepageView;
 import DineEaseVIew.ItemInfoView;
+import DineEaseVIew.ItemModifyView;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;

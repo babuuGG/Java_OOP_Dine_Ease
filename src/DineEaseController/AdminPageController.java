@@ -1,20 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package DineEaseController;
+
+
 
 import DIneEaseModel.AdminLoginModel;
 import DIneEaseModel.AdminPageModel;
-
 import DineEaseDatabase.ItemInfoDAO;
+import DineEaseDatabase.ItemModifyDAO;
 import DineEaseVIew.AdminLoginView;
-
 import DineEaseVIew.AdminPageView;
-
 import DineEaseVIew.ItemInfoView;
 import DineEaseVIew.ItemModifyView;
-
 
 
 
@@ -25,7 +20,7 @@ public class AdminPageController {
 
     public AdminPageController(AdminPageView view) {
         this.view = view;
-        this.model = model;
+        this.model = new AdminPageModel(); // Initialize the model
 
         // Add action listeners to buttons
         view.showButtonDemo(e -> handleButtonClick(e.getActionCommand()));
@@ -38,9 +33,9 @@ public class AdminPageController {
         switch (command) {
             case "Items Modify":
                 view.getMainFrame().dispose();
-                 new ItemModifyController(new ItemModifyView());
-                
-                
+                ItemModifyView modifyView = new ItemModifyView();
+                ItemModifyDAO modifyDAO = new ItemModifyDAO();
+                new ItemModifyController(modifyView, modifyDAO);
                 break;
             case "Staffs Info":
                 view.showMessage("Staff Info button clicked!");
@@ -55,9 +50,8 @@ public class AdminPageController {
                 view.showMessage("Sales Report button clicked!");
                 break;
             case "Go Back":
-               view.getMainFrame().dispose();
-               new AdminLoginController(new AdminLoginModel(), new AdminLoginView());
-
+                view.getMainFrame().dispose();
+                new AdminLoginController(new AdminLoginModel(), new AdminLoginView());
                 break;
         }
     }
@@ -72,7 +66,6 @@ public class AdminPageController {
                 case "Back":
                     view.getMainFrame().dispose();
                     new AdminLoginController(new AdminLoginModel(), new AdminLoginView());
-                    
                     break;
                 case "Exit":
                     int option = javax.swing.JOptionPane.showConfirmDialog(view.getMainFrame(), "Are you sure you want to exit?",
