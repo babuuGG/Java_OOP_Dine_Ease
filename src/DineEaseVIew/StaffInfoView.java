@@ -168,7 +168,7 @@ public class StaffInfoView {
                     break;
                 case "Back":
                     mainFrame.dispose();
-                    new AdminPageController(new AdminPageModel(), new AdminPageView());
+                    new AdminPageController(new AdminPageView());
                     break;
                 case "Exit":
                     int option = JOptionPane.showConfirmDialog(mainFrame, "Are you sure you want to exit?",

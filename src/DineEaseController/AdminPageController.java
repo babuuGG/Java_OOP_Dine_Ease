@@ -18,7 +18,7 @@ public class AdminPageController {
     private AdminPageView view;
     private AdminPageModel model;
 
-    public AdminPageController(AdminPageModel adminPageModel, AdminPageView view) {
+    public AdminPageController(AdminPageView view) {
         this.view = view;
         this.model = new AdminPageModel(); // Initialize the model
 
