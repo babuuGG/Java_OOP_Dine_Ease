@@ -7,6 +7,7 @@ package DineEaseController;
 
 
 import DIneEaseModel.AdminLoginModel;
+import DIneEaseModel.AdminPageModel;
 import DineEaseVIew.AdminLoginView;
 import DineEaseVIew.AdminPageView;
 import DineEaseVIew.StaffPageView;
@@ -37,7 +38,7 @@ public class AdminLoginController {
             if (model.authenticate(username, password)) {
                 view.showMessage("Login Successful!");
                 
-                new AdminPageController(new AdminPageView());
+                new AdminPageController(new AdminPageModel(), new AdminPageView());
             } else {
                 view.showMessage("Invalid Username or Password!");
             }

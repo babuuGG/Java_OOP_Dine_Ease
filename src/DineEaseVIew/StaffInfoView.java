@@ -1,19 +1,19 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package DineEaseVIew;
 
-import DIneEaseModel.AdminPageModel;
-import DineEaseController.AdminPageController;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
+import DIneEaseModel.Staff;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.util.List;
 
 public class StaffInfoView {
-    private JFrame mainFrame;
+    public JFrame mainFrame;
     private JLabel headerLabel;
     private JPanel controlPanel;
     private JTextField searchField;
@@ -77,50 +77,15 @@ public class StaffInfoView {
         buttonPanel.add(deleteButton);
         controlPanel.add(buttonPanel, BorderLayout.EAST);
 
-        mainFrame.add(headerLabel, BorderLayout.NORTH);
-        mainFrame.add(controlPanel, BorderLayout.CENTER);
-
-        table = new JTable();
+        String[] columnNames = {"ID", "Username", "Password", "Address", "Contact", "Email"};
+        tableModel = new DefaultTableModel(columnNames, 0);
+        table = new JTable(tableModel);
         JScrollPane scrollPane = new JScrollPane(table);
         controlPanel.add(scrollPane, BorderLayout.CENTER);
 
+        mainFrame.add(headerLabel, BorderLayout.NORTH);
+        mainFrame.add(controlPanel, BorderLayout.CENTER);
         mainFrame.setVisible(true);
-        mainFrame.setLocationRelativeTo(null);
-
-        JMenuBar menuBar = new JMenuBar();
-        mainFrame.setJMenuBar(menuBar);
-
-        JMenu aboutMenu = new JMenu("About");
-        menuBar.add(aboutMenu);
-
-        JMenu backMenu = new JMenu("Back");
-        menuBar.add(backMenu);
-
-        JMenu exitMenu = new JMenu("Exit");
-        menuBar.add(exitMenu);
-
-        // Create a menu listener
-        MenuListener menuListener = new MenuListener();
-
-        JMenuItem aboutMenuItem = new JMenuItem("About");
-        aboutMenuItem.setActionCommand("About");
-        aboutMenuItem.addActionListener(menuListener);
-        aboutMenu.add(aboutMenuItem);
-
-        JMenuItem backMenuItem = new JMenuItem("Back");
-        backMenuItem.setActionCommand("Back");
-        backMenuItem.addActionListener(menuListener);
-        backMenu.add(backMenuItem);
-
-        JMenuItem exitMenuItem = new JMenuItem("Exit");
-        exitMenuItem.setActionCommand("Exit");
-        exitMenuItem.addActionListener(menuListener);
-        exitMenu.add(exitMenuItem);
-    }
-
-    public void setTableModel(DefaultTableModel tableModel) {
-        this.tableModel = tableModel;
-        table.setModel(tableModel);
     }
 
     public void addInsertButtonListener(ActionListener listener) {
@@ -148,37 +113,29 @@ public class StaffInfoView {
     }
 
     public Object getValueAt(int row, int column) {
-        return table.getValueAt(row, column);
+        return tableModel.getValueAt(row, column);
     }
 
     public String getSearchTerm() {
-        return searchField.getText().trim();
+        return searchField.getText();
+    }
+
+    public void updateTable(List<Staff> staffList) {
+        tableModel.setRowCount(0); // Clear existing data
+        for (Staff staff : staffList) {
+            Object[] rowData = {
+                staff.getId(),
+                staff.getUsername(),
+                staff.getPassword(),
+                staff.getAddress(),
+                staff.getContact(),
+                staff.getEmail()
+            };
+            tableModel.addRow(rowData);
+        }
     }
 
     public void showMessage(String message) {
         JOptionPane.showMessageDialog(mainFrame, message);
     }
-
-    private class MenuListener implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            String command = e.getActionCommand();
-            switch (command) {
-                case "About":
-                    JOptionPane.showMessageDialog(mainFrame, "About Button clicked!");
-                    break;
-                case "Back":
-                    mainFrame.dispose();
-                    new AdminPageController(new AdminPageView());
-                    break;
-                case "Exit":
-                    int option = JOptionPane.showConfirmDialog(mainFrame, "Are you sure you want to exit?",
-                            "Exit Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-                    if (option == JOptionPane.YES_OPTION) {
-                        System.exit(0);
-                    }
-                    break;
-            }
-        }
-    }
 }
-

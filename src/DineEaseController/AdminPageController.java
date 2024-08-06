@@ -6,6 +6,7 @@ import DIneEaseModel.AdminLoginModel;
 import DIneEaseModel.AdminPageModel;
 import DineEaseDatabase.ItemInfoDAO;
 import DineEaseDatabase.ItemModifyDAO;
+import DineEaseDatabase.StaffInfoDAO;
 import DineEaseVIew.AdminLoginView;
 import DineEaseVIew.AdminPageView;
 import DineEaseVIew.ItemInfoView;
@@ -18,7 +19,7 @@ public class AdminPageController {
     private AdminPageView view;
     private AdminPageModel model;
 
-    public AdminPageController(AdminPageView view) {
+    public AdminPageController(AdminPageModel adminPageModel, AdminPageView view) {
         this.view = view;
         this.model = new AdminPageModel(); // Initialize the model
 
@@ -39,7 +40,9 @@ public class AdminPageController {
                 break;
             case "Staffs Info":
                 view.getMainFrame().dispose();
-                new StaffInfoController(new StaffInfoView());
+                StaffInfoView staffView = new StaffInfoView();
+                StaffInfoDAO staffDAO = new StaffInfoDAO();
+                new StaffInfoController(staffView, staffDAO);
                 break;
             case "Items Info":
                 view.getMainFrame().dispose();

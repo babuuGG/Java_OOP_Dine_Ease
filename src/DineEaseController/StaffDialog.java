@@ -1,101 +1,64 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package DineEaseController;
-
-
-import DIneEaseModel.Staff;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class StaffDialog extends JDialog {
-    private JTextField idField;
     private JTextField usernameField;
-    private JPasswordField passwordField;
+    private JTextField passwordField;
     private JTextField addressField;
     private JTextField contactField;
     private JTextField emailField;
     private JButton confirmButton;
     private JButton cancelButton;
-    private boolean isConfirmed;
+    private boolean confirmed;
 
-    public StaffDialog(JFrame parentFrame, String title) {
-        super(parentFrame, title, true);
-        setSize(400, 300);
-        setLocationRelativeTo(parentFrame);
+    public StaffDialog(Frame parent, String title) {
+        super(parent, title, true);
+        prepareGUI();
+    }
 
-        JPanel panel = new JPanel(new GridBagLayout());
-        GridBagConstraints constraints = new GridBagConstraints();
-        constraints.fill = GridBagConstraints.HORIZONTAL;
-        constraints.insets = new Insets(5, 10, 5, 10);
+    private void prepareGUI() {
+        setLayout(new BorderLayout());
 
-        idField = new JTextField(10);
+        JPanel panel = new JPanel(new GridLayout(6, 2, 10, 10));
+        panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+        panel.add(new JLabel("Username:"));
         usernameField = new JTextField(20);
-        passwordField = new JPasswordField(20);
+        panel.add(usernameField);
+
+        panel.add(new JLabel("Password:"));
+        passwordField = new JTextField(20);
+        panel.add(passwordField);
+
+        panel.add(new JLabel("Address:"));
         addressField = new JTextField(20);
-        contactField = new JTextField(10);
+        panel.add(addressField);
+
+        panel.add(new JLabel("Contact:"));
+        contactField = new JTextField(20);
+        panel.add(contactField);
+
+        panel.add(new JLabel("Email:"));
         emailField = new JTextField(20);
-
-        constraints.gridx = 0;
-        constraints.gridy = 0;
-        panel.add(new JLabel("ID:"), constraints);
-
-        constraints.gridx = 1;
-        panel.add(idField, constraints);
-
-        constraints.gridx = 0;
-        constraints.gridy = 1;
-        panel.add(new JLabel("Username:"), constraints);
-
-        constraints.gridx = 1;
-        panel.add(usernameField, constraints);
-
-        constraints.gridx = 0;
-        constraints.gridy = 2;
-        panel.add(new JLabel("Password:"), constraints);
-
-        constraints.gridx = 1;
-        panel.add(passwordField, constraints);
-
-        constraints.gridx = 0;
-        constraints.gridy = 3;
-        panel.add(new JLabel("Address:"), constraints);
-
-        constraints.gridx = 1;
-        panel.add(addressField, constraints);
-
-        constraints.gridx = 0;
-        constraints.gridy = 4;
-        panel.add(new JLabel("Contact:"), constraints);
-
-        constraints.gridx = 1;
-        panel.add(contactField, constraints);
-
-        constraints.gridx = 0;
-        constraints.gridy = 5;
-        panel.add(new JLabel("Email:"), constraints);
-
-        constraints.gridx = 1;
-        panel.add(emailField, constraints);
+        panel.add(emailField);
 
         confirmButton = new JButton("Confirm");
         cancelButton = new JButton("Cancel");
 
-        constraints.gridx = 0;
-        constraints.gridy = 6;
-        constraints.gridwidth = 2;
-        panel.add(confirmButton, constraints);
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.add(confirmButton);
+        buttonPanel.add(cancelButton);
 
-        constraints.gridy = 7;
-        panel.add(cancelButton, constraints);
+        add(panel, BorderLayout.CENTER);
+        add(buttonPanel, BorderLayout.SOUTH);
 
         confirmButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                isConfirmed = true;
+                confirmed = true;
                 dispose();
             }
         });
@@ -103,50 +66,43 @@ public class StaffDialog extends JDialog {
         cancelButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                isConfirmed = false;
                 dispose();
             }
         });
 
-        add(panel);
+        pack();
+        setLocationRelativeTo(getParent());
     }
 
-    public int getID() {
-        return Integer.parseInt(idField.getText());
-    }
-
-    public void setID(int id) {
-        idField.setText(Integer.toString(id));
+    public boolean isConfirmed() {
+        return confirmed;
     }
 
     public String getUsername() {
-        return usernameField.getText();
+        return usernameField.getText().trim();
     }
 
     public String getPassword() {
-        char[] passwordChars = passwordField.getPassword();
-        return new String(passwordChars);
+        return passwordField.getText().trim();
     }
 
     public String getAddress() {
-        return addressField.getText();
+        return addressField.getText().trim();
     }
 
     public long getContact() {
         try {
-            return Long.parseLong(contactField.getText());
+            return Long.parseLong(contactField.getText().trim());
         } catch (NumberFormatException e) {
-            return 0;
+            return 0; 
         }
     }
 
     public String getEmail() {
-        return emailField.getText();
+        return emailField.getText().trim();
     }
 
-    public boolean isConfirmed() {
-        return isConfirmed;
+    public void setID(int id) {
+        
     }
-
-    
 }

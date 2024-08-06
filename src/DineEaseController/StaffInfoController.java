@@ -1,13 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package DineEaseController;
 
 import DIneEaseModel.Staff;
+import DineEaseDatabase.StaffInfoDAO;
 import DineEaseVIew.StaffInfoView;
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -15,41 +10,22 @@ import java.util.List;
 
 public class StaffInfoController {
     private StaffInfoView view;
-   
+    private StaffInfoDAO model;
 
-    public StaffInfoController(StaffInfoView view) {
+    public StaffInfoController(StaffInfoView view, StaffInfoDAO model) {
         this.view = view;
-    
+        this.model = model;
+
         this.view.addInsertButtonListener(new InsertButtonListener());
         this.view.addUpdateButtonListener(new UpdateButtonListener());
         this.view.addDeleteButtonListener(new DeleteButtonListener());
         this.view.addSearchButtonListener(new SearchButtonListener());
         this.view.addRefreshButtonListener(new RefreshButtonListener());
+
         refreshTable();
     }
 
-    private void refreshTable() {
-        try {
-            List<Staff> staffList = dao.getAllStaff();
-            DefaultTableModel tableModel = new DefaultTableModel(new String[]{"ID", "Username", "Password", "Address", "Contact", "Email"}, 0);
-            for (Staff staff : staffList) {
-                tableModel.addRow(new Object[]{
-                        staff.getId(),
-                        staff.getUsername(),
-                        staff.getPassword(),
-                        staff.getAddress(),
-                        staff.getContact(),
-                        staff.getEmail()
-                });
-            }
-            view.setTableModel(tableModel);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            view.showMessage("Error loading staff data.");
-        }
-    }
-
-    private class InsertButtonListener implements ActionListener {
+    class InsertButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             StaffDialog dialog = new StaffDialog(view.mainFrame, "Insert Staff");
@@ -64,9 +40,9 @@ public class StaffInfoController {
                 staff.setEmail(dialog.getEmail());
 
                 try {
-                    dao.insertStaff(staff);
+                    model.insertStaff(staff);
+                    view.showMessage("Staff inserted successfully!");
                     refreshTable();
-                    view.showMessage("Staff inserted successfully.");
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                     view.showMessage("Error inserting staff.");
@@ -75,24 +51,19 @@ public class StaffInfoController {
         }
     }
 
-    private class UpdateButtonListener implements ActionListener {
+    class UpdateButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             int selectedRow = view.getSelectedRow();
             if (selectedRow >= 0) {
-                Staff staff = new Staff();
-                staff.setId((int) view.getValueAt(selectedRow, 0));
-                staff.setUsername((String) view.getValueAt(selectedRow, 1));
-                staff.setPassword((String) view.getValueAt(selectedRow, 2));
-                staff.setAddress((String) view.getValueAt(selectedRow, 3));
-                staff.setContact((long) view.getValueAt(selectedRow, 4));
-                staff.setEmail((String) view.getValueAt(selectedRow, 5));
-
+                int id = (int) view.getValueAt(selectedRow, 0);
                 StaffDialog dialog = new StaffDialog(view.mainFrame, "Update Staff");
-              
+                dialog.setID(id);
                 dialog.setVisible(true);
 
                 if (dialog.isConfirmed()) {
+                    Staff staff = new Staff();
+                    staff.setId(id);
                     staff.setUsername(dialog.getUsername());
                     staff.setPassword(dialog.getPassword());
                     staff.setAddress(dialog.getAddress());
@@ -100,80 +71,66 @@ public class StaffInfoController {
                     staff.setEmail(dialog.getEmail());
 
                     try {
-                        dao.updateStaff(staff);
+                        model.updateStaff(staff);
+                        view.showMessage("Staff updated successfully!");
                         refreshTable();
-                        view.showMessage("Staff updated successfully.");
                     } catch (SQLException ex) {
                         ex.printStackTrace();
                         view.showMessage("Error updating staff.");
                     }
                 }
-            } else {
-                view.showMessage("No staff selected.");
             }
         }
     }
 
-    private class DeleteButtonListener implements ActionListener {
+    class DeleteButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             int selectedRow = view.getSelectedRow();
             if (selectedRow >= 0) {
                 int id = (int) view.getValueAt(selectedRow, 0);
-
-                int option = JOptionPane.showConfirmDialog(view.mainFrame, "Are you sure you want to delete this staff?",
-                        "Delete Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-
-                if (option == JOptionPane.YES_OPTION) {
-                    try {
-                        dao.deleteStaff(id);
-                        refreshTable();
-                        view.showMessage("Staff deleted successfully.");
-                    } catch (SQLException ex) {
-                        ex.printStackTrace();
-                        view.showMessage("Error deleting staff.");
-                    }
+                try {
+                    model.deleteStaff(id);
+                    view.showMessage("Staff deleted successfully!");
+                    refreshTable();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                    view.showMessage("Error deleting staff.");
                 }
-            } else {
-                view.showMessage("No staff selected.");
             }
         }
     }
 
-    private class SearchButtonListener implements ActionListener {
+    class SearchButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             String searchTerm = view.getSearchTerm();
             if (!searchTerm.isEmpty()) {
                 try {
-                    List<Staff> staffList = dao.searchStaff(searchTerm);
-                    DefaultTableModel tableModel = new DefaultTableModel(new String[]{"ID", "Username", "Password", "Address", "Contact", "Email"}, 0);
-                    for (Staff staff : staffList) {
-                        tableModel.addRow(new Object[]{
-                                staff.getId(),
-                                staff.getUsername(),
-                                staff.getPassword(),
-                                staff.getAddress(),
-                                staff.getContact(),
-                                staff.getEmail()
-                        });
-                    }
-                    view.setTableModel(tableModel);
+                    List<Staff> staffList = model.searchStaff(searchTerm);
+                    view.updateTable(staffList);
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                     view.showMessage("Error searching staff.");
                 }
-            } else {
-                view.showMessage("Please enter a search term.");
             }
         }
     }
 
-    private class RefreshButtonListener implements ActionListener {
+    class RefreshButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             refreshTable();
         }
     }
-}
 
+    private void refreshTable() {
+        try {
+            List<Staff> staffList = model.getAllStaff();
+            view.updateTable(staffList);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            view.showMessage("Error loading staff data.");
+        }
+    }
+}
