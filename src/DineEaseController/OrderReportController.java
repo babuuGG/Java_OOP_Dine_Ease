@@ -4,6 +4,8 @@
  */
 package DineEaseController;
 
+import DIneEaseModel.OrderReportModel;
+import DineEaseDatabase.OrderReportDAO;
 import DineEaseVIew.OrderReportView;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
