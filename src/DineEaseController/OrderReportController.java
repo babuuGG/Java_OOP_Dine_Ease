@@ -4,11 +4,6 @@
  */
 package DineEaseController;
 
-
-
-
-
-import DIneEaseModel.OrderReportModel;
 import DineEaseVIew.OrderReportView;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -20,11 +15,11 @@ import java.util.List;
 
 public class OrderReportController {
     private OrderReportView view;
-   
+    private OrderReportDAO dao;
 
-    public OrderReportController(OrderReportView view) {
+    public OrderReportController(OrderReportView view, OrderReportDAO dao) {
         this.view = view;
-       
+        this.dao = dao;
 
         this.view.searchButton.addActionListener(new ActionListener() {
             @Override
@@ -41,8 +36,46 @@ public class OrderReportController {
         fetchAllOrders();
     }
 
-    
+    private void fetchAllOrders() {
+        try {
+            List<OrderReportModel> orders = dao.fetchAllOrders();
+            displayOrders(orders);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
-    
+    private void performSearch(Date searchDate) {
+        try {
+            String searchTerm = view.searchField.getText().trim();
+            List<OrderReportModel> orders = dao.searchOrdersByDate(searchDate, searchTerm);
+            displayOrders(orders);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void displayOrders(List<OrderReportModel> orders) {
+        view.model.setRowCount(0);
+        for (OrderReportModel order : orders) {
+            view.model.addRow(new Object[]{
+                order.getOrderDate(),
+                order.getReportId(),
+                order.getTotalAmount()
+            });
+        }
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            try {
+                OrderReportView view = new OrderReportView();
+                OrderReportDAO dao = new OrderReportDAO();
+                new OrderReportController(view, dao);
+                view.setVisible(true);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }
 }
-
