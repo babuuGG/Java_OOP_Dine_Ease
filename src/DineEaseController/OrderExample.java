@@ -115,7 +115,40 @@ public class OrderExample {
         buttonPanel.add(markAsPaidButton); // Add the button to the buttonPanel
         orderPanel.add(buttonPanel, BorderLayout.SOUTH);
 
-        
+        // Create a new JTable for displaying orders
+        orderTable = new JTable();
+        orderTableModel = new DefaultTableModel();
+        orderTableModel.addColumn("Food Name");
+        orderTableModel.addColumn("Quantity");
+        orderTableModel.addColumn("Total Price");
+
+        // Set the model for the orderTable
+        orderTable.setModel(orderTableModel);
+
+        // Create a JScrollPane for the orderTable
+        JScrollPane orderScrollPane = new JScrollPane(orderTable);
+
+        // Add the JScrollPane to the orderPanel
+        orderPanel.add(orderScrollPane, BorderLayout.CENTER);
+
+        // Initialize the table number label
+        tableNumberLabel = new JLabel("Table Number: ");
+        tableNumberLabel.setFont(new Font(null, Font.BOLD, 20));
+        tableNumberLabel.setHorizontalAlignment(JLabel.CENTER);
+        orderPanel.add(tableNumberLabel, BorderLayout.NORTH);
+
+        // Set the font for the orderTable headers
+        JTableHeader orderTableHeader = orderTable.getTableHeader();
+        orderTableHeader.setFont(new Font(null, Font.BOLD, 18));
+
+        // Set the font for the orderTable rows
+        orderTable.setFont(new Font(null, Font.PLAIN, 16));
+        orderTable.setRowHeight(30);
+
+        // Set the renderer to center-align the content
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        orderTable.setDefaultRenderer(Object.class, centerRenderer);
 
         JMenuBar menuBar = new JMenuBar();
         mainFrame.setJMenuBar(menuBar);
@@ -163,7 +196,9 @@ public class OrderExample {
             }
         });
 
-        
+        tableSearchButton.addActionListener(e -> {
+            displayTableStatusButtons();
+        });
 
         mainFrame.setVisible(true);
         mainFrame.setLocationRelativeTo(null);
@@ -172,6 +207,25 @@ public class OrderExample {
         refreshTable();
     }
 
-    
+    private void refreshTable() {
+        // Fetch the data from the DAO
+        Object[][] data = orderDAO.getFoodData();
+
+        String[] columnNames = {"Food ID", "Food Name", "Price"};
+        tableModel = new DefaultTableModel(data, columnNames);
+        table.setModel(tableModel);
+    }
+
+    private void displayTableStatusButtons() {
+        Set<Integer> usedTables = orderDAO.getUsedTables();
+
+        // Update table status based on the fetched usedTables set
+        StringBuilder statusMessage = new StringBuilder("Used Tables:\n");
+        for (Integer tableNumber : usedTables) {
+            statusMessage.append("Table ").append(tableNumber).append("\n");
+        }
+
+        // Display the table status message in the orderTextArea
+        orderTextArea.setText(statusMessage.toString());
     }
 }
