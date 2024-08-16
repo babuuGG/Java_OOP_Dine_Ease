@@ -72,6 +72,7 @@ public class StaffPageController {
 
         createButton("Order Placement", e -> {
             view.getMainFrame().dispose();
+            OrderPlacement orderp= new OrderPlacement();
             
         });
 

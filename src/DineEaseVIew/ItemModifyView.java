@@ -78,7 +78,7 @@ public class ItemModifyView {
 
         refreshButton = new JButton("Refresh");
         refreshButton.setBackground(new Color(0, 51, 102));
-        refreshButton.setForeground(Color.black);
+        refreshButton.setForeground(Color.white);
         controlPanel.add(refreshButton, BorderLayout.SOUTH);
 
         insertButton = new JButton("Insert");

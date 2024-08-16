@@ -6,12 +6,21 @@ import DIneEaseModel.AdminLoginModel;
 import DIneEaseModel.AdminPageModel;
 import DineEaseDatabase.ItemInfoDAO;
 import DineEaseDatabase.ItemModifyDAO;
+import DineEaseDatabase.OrderReportDAO;
 import DineEaseDatabase.StaffInfoDAO;
 import DineEaseVIew.AdminLoginView;
 import DineEaseVIew.AdminPageView;
 import DineEaseVIew.ItemInfoView;
 import DineEaseVIew.ItemModifyView;
+import DineEaseVIew.OrderReportView;
 import DineEaseVIew.StaffInfoView;
+import java.sql.SQLException;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
+
 
 
 
@@ -24,13 +33,21 @@ public class AdminPageController {
         this.model = new AdminPageModel(); // Initialize the model
 
         // Add action listeners to buttons
-        view.showButtonDemo(e -> handleButtonClick(e.getActionCommand()));
+        view.showButtonDemo(e -> {
+            try {
+                handleButtonClick(e.getActionCommand());
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(AdminPageController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(AdminPageController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
 
         // Add menu listeners
         view.addMenuListener(new MenuListener());
     }
 
-    private void handleButtonClick(String command) {
+    private void handleButtonClick(String command) throws ClassNotFoundException, SQLException {
         switch (command) {
             case "Items Modify":
                 view.getMainFrame().dispose();
@@ -51,8 +68,20 @@ public class AdminPageController {
                 new ItemInfoController(itemView, itemDAO);
                 break;
             case "Sales Report":
-                view.showMessage("Sales Report button clicked!");
-                break;
+    try {
+        view.getMainFrame().dispose();  // Dispose of the current view
+        OrderReportView orderView = new OrderReportView();
+        OrderReportDAO orderDao = new OrderReportDAO();
+        new OrderReportController(orderView, orderDao);
+        orderView.setVisible(true);  // Make the new view visible
+    } catch (ClassNotFoundException | SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error loading Sales Report: " + e.getMessage());
+        e.printStackTrace();  // Log the exception for debugging
+    }
+    break;
+
+
+
             case "Go Back":
                 view.getMainFrame().dispose();
                 new AdminLoginController(new AdminLoginModel(), new AdminLoginView());
@@ -81,4 +110,5 @@ public class AdminPageController {
             }
         }
     }
+    
 }
