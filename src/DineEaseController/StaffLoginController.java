@@ -1,16 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package DineEaseController;
 
-import DineEaseVIew.StaffPageView;
 import DIneEaseModel.HomepageModel;
-
-import DIneEaseModel.StaffLoginModel;
+import DineEaseDatabase.StaffLoginDAO;
 import DineEaseVIew.HomepageView;
-
 import DineEaseVIew.StaffLoginView;
+import DineEaseVIew.StaffPageView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -19,16 +13,12 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-/**
- *
- * @author roshankhadka
- */
 public class StaffLoginController {
-    private StaffLoginModel model;
+    private StaffLoginDAO staffLoginDAO;
     private StaffLoginView view;
 
-    public StaffLoginController(StaffLoginModel model, StaffLoginView view) {
-        this.model = model;
+    public StaffLoginController(StaffLoginDAO staffLoginDAO, StaffLoginView view) {
+        this.staffLoginDAO = staffLoginDAO;
         this.view = view;
         initView();
         initController();
@@ -91,7 +81,7 @@ public class StaffLoginController {
         String username = view.txtUsername.getText();
         String password = new String(view.txtPassword.getPassword());
 
-        if (model.validateLogin(username, password)) {
+        if (staffLoginDAO.validateLogin(username, password)) {
             JOptionPane.showMessageDialog(null, "Login Successful!");
             view.frame.dispose();
             new StaffPageController(new StaffPageView());
@@ -101,7 +91,7 @@ public class StaffLoginController {
     }
 
     private void resetPassword(String username, String phoneNumber, String newPassword) {
-        if (model.resetPassword(username, phoneNumber, newPassword)) {
+        if (staffLoginDAO.resetPassword(username, phoneNumber, newPassword)) {
             JOptionPane.showMessageDialog(null, "Password Reset Successful!");
         } else {
             JOptionPane.showMessageDialog(null, "Password Reset Failed. Please check your Username and Phone Number.");
@@ -109,10 +99,8 @@ public class StaffLoginController {
     }
 
     public static void main(String[] args) {
-        StaffLoginModel model = new StaffLoginModel();
+        StaffLoginDAO staffLoginDAO = new StaffLoginDAO();
         StaffLoginView view = new StaffLoginView();
-        new StaffLoginController(model, view);
+        new StaffLoginController(staffLoginDAO, view);
     }
 }
-    
-

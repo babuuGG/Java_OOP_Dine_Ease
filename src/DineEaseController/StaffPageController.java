@@ -5,6 +5,7 @@ package DineEaseController;
 import DIneEaseModel.HomepageModel;
 import DIneEaseModel.StaffLoginModel;
 import DineEaseDatabase.ItemInfoDAO;
+import DineEaseDatabase.StaffLoginDAO;
 
 
 
@@ -49,7 +50,7 @@ public class StaffPageController {
 
     private void goBack() {
         view.getMainFrame().dispose();
-        new StaffLoginController(new StaffLoginModel(), new StaffLoginView());
+        new StaffLoginController(new StaffLoginDAO(), new StaffLoginView());
     }
 
     private void exitApplication() {
@@ -76,7 +77,7 @@ public class StaffPageController {
 
         createButton("Go Back", e -> {
             view.getMainFrame().dispose();
-            new StaffLoginController(new StaffLoginModel(), new StaffLoginView());
+            new StaffLoginController(new StaffLoginDAO(), new StaffLoginView());
 
         });
         view.getMainFrame().setLocationRelativeTo(null);

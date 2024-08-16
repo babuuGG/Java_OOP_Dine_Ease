@@ -1,9 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package DineEaseDatabase;
-
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -27,7 +22,7 @@ public class StaffLoginDAO {
     }
 
     public boolean validateLogin(String username, String password) {
-        String query = "SELECT COUNT(1) FROM staff WHERE username = ? AND password = ?";
+        String query = "SELECT COUNT(1) FROM Staff WHERE s_username = ? AND s_password = ?";
         
         try (Connection conn = connect();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -47,14 +42,15 @@ public class StaffLoginDAO {
     }
 
     public boolean resetPassword(String username, String phoneNumber, String newPassword) {
-        String query = "UPDATE staff SET password = ? WHERE username = ? AND phone_number = ?";
+        // Corrected SQL query
+        String query = "UPDATE Staff SET s_password = ? WHERE s_username = ? AND s_contact = ?";
         
         try (Connection conn = connect();
              PreparedStatement stmt = conn.prepareStatement(query)) {
              
-            stmt.setString(1, newPassword);
-            stmt.setString(2, username);
-            stmt.setString(3, phoneNumber);
+            stmt.setString(1, newPassword); // Updated password
+            stmt.setString(2, username);    // Username
+            stmt.setString(3, phoneNumber); // Contact number
             
             int rowsAffected = stmt.executeUpdate();
             
