@@ -70,7 +70,7 @@ public class OrderPlacement {
           
             JLabel headerLabel = new JLabel("Dine-Ease:Your Virtual Manager");
             headerLabel.setFont(new Font(null, Font.BOLD, 24));
-            headerLabel.setForeground(Color.black); // Set text color
+            headerLabel.setForeground(Color.white); // Set text color
             headerLabel.setHorizontalAlignment(JLabel.CENTER); // Center-align text
             headerPanel.add(headerLabel, BorderLayout.CENTER);
 
@@ -145,7 +145,7 @@ public class OrderPlacement {
             // Add "Thank you" message label to the panel
             JLabel thankYouLabel = new JLabel("Thank you for dining");
             thankYouLabel.setFont(new Font(null, Font.BOLD, 18));
-            thankYouLabel.setForeground(Color.black); // Set text color
+            thankYouLabel.setForeground(Color.white); // Set text color
             thankYouLabel.setHorizontalAlignment(JLabel.CENTER); // Center-align text
             thankYouPanel.add(thankYouLabel);
 
@@ -184,7 +184,9 @@ public class OrderPlacement {
 
         JButton refreshButton = new JButton("Refresh");
         refreshButton.setBackground(new Color(0, 51, 102));
-        refreshButton.setForeground(Color.black);
+        refreshButton.setForeground(Color.white);
+        refreshButton.setBorderPainted(false);
+        refreshButton.setOpaque(true);
         controlPanel.add(refreshButton, BorderLayout.SOUTH);
 
         // Create a panel for the right-hand side
@@ -753,12 +755,16 @@ public class OrderPlacement {
                     tableButton.setBackground(Color.RED);
                     tableButton.setForeground(Color.black);
                     tableButton.setFont(new Font(null, Font.BOLD, 20));
+                    tableButton.setBorderPainted(false);
+                    tableButton.setOpaque(true);
                     tableButton.setToolTipText("Table Occupied");
                 } else {
                     // Display the table button as available (green)
                     tableButton.setBackground(Color.GREEN);
                     tableButton.setForeground(Color.BLACK);
                     tableButton.setFont(new Font(null, Font.BOLD, 20));
+                    tableButton.setBorderPainted(false);
+                    tableButton.setOpaque(true);
                     tableButton.setToolTipText("Table Available");
                 }
 

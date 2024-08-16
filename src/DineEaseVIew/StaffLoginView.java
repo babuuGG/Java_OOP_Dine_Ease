@@ -21,10 +21,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-/**
- *
- * @author roshankhadka
- */
+
 public class StaffLoginView {
    public JFrame frame;
    public JPanel panel, loginPanel;
@@ -110,6 +107,8 @@ public class StaffLoginView {
     btnLogin.setFont(new Font("Arial", Font.BOLD, 18));
     btnLogin.setBackground(new Color(52, 152, 219));
     btnLogin.setForeground(new Color(0, 0, 182, 155));
+    btnLogin.setBorderPainted(false);
+    btnLogin.setOpaque(true);
 
     loginPanel.add(lblUsername);
     loginPanel.add(txtUsername);

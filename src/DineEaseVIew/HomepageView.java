@@ -56,6 +56,8 @@ public class HomepageView {
         button.setBackground(new Color(0, 102, 204));
         button.setFocusPainted(false);
         button.setPreferredSize(new Dimension(220, 70));
+        button.setBorderPainted(false);
+        button.setOpaque(true);
 
         button.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override

@@ -82,6 +82,8 @@ public class AdminPageView {
         button.setFocusPainted(false);
         button.setBorder(new RoundedBorder(Color.black, 30));
         button.setPreferredSize(new Dimension(240, 70));
+        button.setBorderPainted(false);
+        button.setOpaque(true);
 
         button.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override

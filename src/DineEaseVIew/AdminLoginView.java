@@ -74,6 +74,8 @@ public class AdminLoginView extends JFrame {
         btnLogin.setFont(new Font("Arial", Font.BOLD, 18));
         btnLogin.setBackground(new Color(52, 152, 219));
         btnLogin.setForeground(Color.BLACK);
+        btnLogin.setBorderPainted(false);
+        btnLogin.setOpaque(true);
 
         loginPanel.add(lblHeader);
         loginPanel.add(lblUsername);

@@ -5,6 +5,8 @@ import DIneEaseModel.CustomerPageModel;
 import DIneEaseModel.HomepageModel;
 import DIneEaseModel.OpeningPageModel;
 import DIneEaseModel.StaffLoginModel;
+import DineEaseController.AdminLoginController;
+import DineEaseController.StaffLoginController;
 import DineEaseDatabase.StaffLoginDAO;
 import DineEaseVIew.AdminLoginView;
 import DineEaseVIew.CustomerPageView;
@@ -47,13 +49,11 @@ public class HomepageController {
             new AdminLoginController(adminModel, adminLoginView);
                 break;
             case "Staff":
-            StaffLoginModel staffModel = new StaffLoginModel();
+            StaffLoginDAO staffDAO = new StaffLoginDAO();
             StaffLoginView staffLoginView = new StaffLoginView();
-            {
-                StaffLoginDAO staffLoginModel = null;
-                new StaffLoginController(staffLoginModel, staffLoginView);
-            }
-                break;
+            new StaffLoginController(staffDAO, staffLoginView);
+            
+            break;
 
             case "Customer":
             CustomerPageModel customerModel = new CustomerPageModel();

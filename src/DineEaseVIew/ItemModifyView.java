@@ -79,19 +79,27 @@ public class ItemModifyView {
         refreshButton = new JButton("Refresh");
         refreshButton.setBackground(new Color(0, 51, 102));
         refreshButton.setForeground(Color.white);
+        refreshButton.setBorderPainted(false);
+        refreshButton.setOpaque(true);
         controlPanel.add(refreshButton, BorderLayout.SOUTH);
 
         insertButton = new JButton("Insert");
         insertButton.setBackground(new Color(0, 51, 102));
-        insertButton.setForeground(Color.black);
+        insertButton.setForeground(Color.white);
+        insertButton.setBorderPainted(false);
+        insertButton.setOpaque(true);
 
         updateButton = new JButton("Update");
         updateButton.setBackground(new Color(0, 51, 102));
-        updateButton.setForeground(Color.black);
+        updateButton.setForeground(Color.white);
+        updateButton.setBorderPainted(false);
+        updateButton.setOpaque(true);
 
         deleteButton = new JButton("Delete");
         deleteButton.setBackground(new Color(0, 51, 102));
-        deleteButton.setForeground(Color.black);
+        deleteButton.setForeground(Color.white);
+        deleteButton.setBorderPainted(false);
+        deleteButton.setOpaque(true);
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(3, 1, 5, 5));

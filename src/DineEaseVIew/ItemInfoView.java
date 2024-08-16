@@ -45,6 +45,8 @@ public class ItemInfoView {
         refreshButton = new JButton("Refresh");
         refreshButton.setBackground(new Color(0, 51, 102));
         refreshButton.setForeground(Color.white);
+        refreshButton.setBorderPainted(false);
+        refreshButton.setOpaque(true);
         controlPanel.add(refreshButton, BorderLayout.SOUTH);
 
         mainFrame.add(headerLabel, BorderLayout.NORTH);

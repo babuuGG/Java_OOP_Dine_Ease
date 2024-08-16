@@ -55,20 +55,28 @@ public class StaffInfoView {
 
         refreshButton = new JButton("Refresh");
         refreshButton.setBackground(new Color(0, 51, 102));
-        refreshButton.setForeground(Color.BLACK);
+        refreshButton.setForeground(Color.WHITE);
+        refreshButton.setBorderPainted(false);
+        refreshButton.setOpaque(true);
         controlPanel.add(refreshButton, BorderLayout.SOUTH);
 
         insertButton = new JButton("Insert");
         insertButton.setBackground(new Color(0, 51, 102));
-        insertButton.setForeground(Color.BLACK);
+        insertButton.setForeground(Color.WHITE);
+        insertButton.setBorderPainted(false);
+        insertButton.setOpaque(true);
 
         updateButton = new JButton("Update");
         updateButton.setBackground(new Color(0, 51, 102));
-        updateButton.setForeground(Color.BLACK);
+        updateButton.setForeground(Color.WHITE);
+        updateButton.setBorderPainted(false);
+        updateButton.setOpaque(true);
 
         deleteButton = new JButton("Delete");
         deleteButton.setBackground(new Color(0, 51, 102));
-        deleteButton.setForeground(Color.BLACK);
+        deleteButton.setForeground(Color.WHITE);
+        deleteButton.setBorderPainted(false);
+        deleteButton.setOpaque(true);
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(3, 1, 5, 5));

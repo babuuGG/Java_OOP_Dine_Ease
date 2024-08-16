@@ -40,6 +40,9 @@ public class OpeningPageView {
         btnGetStarted.setFocusPainted(false);
         btnGetStarted.setBackground(Color.BLUE);
         btnGetStarted.setForeground(Color.BLACK);
+        btnGetStarted.setBorderPainted(false);
+        btnGetStarted.setOpaque(true);
+        
 
         // Load and set background image
         ImageIcon backgroundImg = new ImageIcon("Resources/ooo.png");
