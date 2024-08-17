@@ -34,6 +34,7 @@ public class CustomerPageView {
         headerLabel = new JLabel("CUSTOMER PAGE", JLabel.CENTER);
         headerLabel.setFont(new Font(null, Font.BOLD, 30));
         headerLabel.setForeground(Color.black);
+        headerLabel.setBackground(Color.white);
     
         mainFrame.add(headerLabel, BorderLayout.NORTH);
         

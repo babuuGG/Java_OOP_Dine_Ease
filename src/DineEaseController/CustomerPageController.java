@@ -59,6 +59,8 @@ public class CustomerPageController {
         button.setFocusPainted(false);
         button.setBorder(new CustomerPageView.RoundedBorder(Color.white, 30));
         button.setPreferredSize(new Dimension(220, 70));
+        button.setBorderPainted(false);
+        button.setOpaque(true);
 
         button.addMouseListener(new MouseAdapter() {
             @Override
