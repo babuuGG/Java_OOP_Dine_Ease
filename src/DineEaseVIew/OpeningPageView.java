@@ -32,7 +32,7 @@ public class OpeningPageView {
     public void createUI() {
         frame = new JFrame("Welcome to Dine-Ease");
         mainPanel = new JPanel();
-        btnGetStarted = new JButton("Get Started");
+        btnGetStarted = new JButton("GetStarted");
         
         // Set button properties
         btnGetStarted.setBounds(320, 35, 150, 40);

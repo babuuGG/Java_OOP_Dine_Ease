@@ -92,6 +92,8 @@ public class StaffPageController {
         button.setFocusPainted(false);
         button.setBorder((Border) new RoundedBorder(Color.white, 30));
         button.setPreferredSize(new Dimension(220, 70));
+        button.setOpaque(true);
+        button.setBorderPainted(false);
 
         button.addMouseListener(new MouseAdapter() {
             @Override
